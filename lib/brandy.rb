@@ -10,7 +10,7 @@ module Brandy
     end
 
     def prefix request
-      @brands[request.domain.split('.').last]
+      @brands[request.domain.split('.').last] ||= @brands.first
     end
 
   end  
