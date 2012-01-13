@@ -2,12 +2,6 @@ require "brandy/version"
 require "brandy/action_view"
 
 module Brandy
-  def self.hello
-    "hello world"
-  end
-end
-
-module Brandy
   class << self
     attr_accessor :brands
 
