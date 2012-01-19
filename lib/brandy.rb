@@ -1,19 +1,12 @@
 require "brandy/version"
-require "brandy/action_view"
+require "brandy/brandy_helper"
+require "branding"
 
 module Brandy
   class << self
-    attr_accessor :brands
-
-    def load_file
-      @brands = YAML::load_file 'config/branding.yml'
-    end
-
     def prefix request
-      @brands[request.domain.split('.').last] ||= @brands.values.first
+      Branding.config['domains'][Branding.tld(request)] || Branding.config['domains']['com'] || 'nexia'
     end
-
   end  
-  load_file
 end
 
