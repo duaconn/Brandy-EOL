@@ -1,12 +1,15 @@
 require "brandy/version"
 require "brandy/brandy_helper"
-require "branding"
 
 module Brandy
   class << self
     def prefix request
-      Branding.config['domains'][Branding.tld(request)] || Branding.config['domains']['com'] || 'nexia'
+      if Module.const_defined? 'Branding'
+        Branding.config['domains'][Branding.tld(request)] || Branding.config['domains']['com'] || 'nexia'
+      else
+        'nexia'
+      end
     end
-  end  
+  end
 end
 
