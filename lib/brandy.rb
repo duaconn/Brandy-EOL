@@ -29,7 +29,7 @@ module Brandy
     end
    
     def get_property(brand, property)
-      return "HIT PROPERTY"
+      return @config.inspect
      @config['brands'][brand][property]  
     end
     
