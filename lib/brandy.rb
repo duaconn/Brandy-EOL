@@ -6,7 +6,7 @@ module Brandy
     attr_accessor :config
     #used to return a value from YAML file. Brandy.<string_to_return>({:request => request})
     #TODO: Load brand filtering options based on files in filters directory
-    def method_missing(name, *args)
+    def method_missing(name, args)
       #name - key in yaml file to load (eg system, system_plain, domain)
       #args - hash of filters to use, evaluated in order. Options are independent of order (NYI)
       
