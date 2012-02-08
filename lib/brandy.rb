@@ -15,10 +15,10 @@ module Brandy
        @config = YAML.load_file(Rails.root.join("config","branding.yml"))
       end
       
-      if (!args[:country_code].nil?)
+      if args.has_key?(:country_code)
         brand = brand_from_country_code
         return "Hit country code"
-      elsif (!args[:request].nil?)
+      elsif args.has_key?(:request)
         return "hit request"
         brand = brand_from_request args[:request]
       else
