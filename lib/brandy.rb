@@ -29,8 +29,7 @@ module Brandy
     end
    
     def get_property(brand, property)
-      return property
-     @config['brands'][brand][property]  
+     @config['brands'][brand.to_s][property.to_s]  
     end
     
     def brand_from_country_code country_code
