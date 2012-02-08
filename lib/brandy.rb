@@ -17,7 +17,9 @@ module Brandy
       
       if (!args[:country_code].nil?)
         brand = brand_from_country_code
+        return "Hit country code"
       elsif (!args[:request].nil?)
+        return "hit request"
         brand = brand_from_request args[:request]
       else
         #TODO: Fix this, obviously
