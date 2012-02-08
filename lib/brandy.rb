@@ -18,7 +18,7 @@ module Brandy
       if (!args[:country_code].nil?)
         brand = brand_from_country_code
       elsif (!args[:request].nil?)
-        brand = brand_from_request
+        brand = brand_from_request args[:request]
       else
         #TODO: Fix this, obviously
         brand = 'nexia'
