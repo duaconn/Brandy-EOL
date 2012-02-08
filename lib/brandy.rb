@@ -43,6 +43,6 @@ module Brandy
     def prefix request
         @config['domains'][Branding.tld(request)] || @config['domains']['com'] || 'nexia'
     end
-
+  end
 end
 
