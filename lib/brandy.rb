@@ -17,8 +17,8 @@ module Brandy
       
       if (!args[:country_code].nil?)
         brand = brand_from_country_code
-      elsif (!args[:session].nil?)
-        brand = brand_from_session
+      elsif (!args[:request].nil?)
+        brand = brand_from_request
       else
         #TODO: Fix this, obviously
         brand = 'nexia'
@@ -35,7 +35,11 @@ module Brandy
     def brand_from_country_code country_code
       @config['domains'][country_code.downcase] || @config['domains']['com']
     end
-        
+    
+    def brand_from_request request
+    tld = request.domain.split('.'). last
+      @config['domains'][tld] || @config['domains']['com']
+    end    
     def prefix request
         @config['domains'][Branding.tld(request)] || @config['domains']['com'] || 'nexia'
     end
