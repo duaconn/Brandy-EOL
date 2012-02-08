@@ -17,9 +17,7 @@ module Brandy
       
       if args.has_key?(:country_code)
         brand = brand_from_country_code
-        return "Hit country code"
       elsif args.has_key?(:request)
-        return "hit request"
         brand = brand_from_request args[:request]
       else
         #TODO: Fix this, obviously
