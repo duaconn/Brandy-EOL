@@ -29,7 +29,7 @@ module Brandy
     end
    
     def get_property(brand, property)
-      return brand + property
+      return brand
      @config['brands'][brand][property]  
     end
     
