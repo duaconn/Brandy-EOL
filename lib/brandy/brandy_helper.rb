@@ -19,16 +19,7 @@ module BrandyHelper
     sources << options
     stylesheet_link_tag *sources
   end
-
-  # def branded_image_path(source)
-  #   "/" + Brandy.prefix(request) + compute_public_path(source, 'images')
-  # end
-  # alias_method :path_to_image, :image_path # aliased to avoid conflicts with an image_path named route
-
-  # def branded_stylesheet_path(source)
-  #  "/" + Brandy.prefix(request) + compute_public_path(source, 'stylesheets', 'css')
-  # end
-  # alias_method :path_to_stylesheet, :stylesheet_path      
+ 
 
 end
 include BrandyHelper
