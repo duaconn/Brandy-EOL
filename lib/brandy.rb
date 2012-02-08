@@ -11,24 +11,25 @@ module Brandy
       #args - hash of filters to use, evaluated in order. Options are independent of order (NYI)
       
       #hack method to load yaml if it hasn't been yet
-      if @config.nil? then @config = YAML.load_file(Rails.root.join("config","branding.yml")) 
+      if @config.nil?
+       @config = YAML.load_file(Rails.root.join("config","branding.yml"))
+      end
       
-       if (!args[:country_code].nil?)
-         brand = brand_from_country_code
-       elsif (!args[:session].nil?)
-         brand = brand_from_session
-       else
-         #TODO: Fix this, obviously
-         brand = 'nexia'
-       end
+      if (!args[:country_code].nil?)
+        brand = brand_from_country_code
+      elsif (!args[:session].nil?)
+        brand = brand_from_session
+      else
+        #TODO: Fix this, obviously
+        brand = 'nexia'
+      end
        
-       get_property(brand,name)
+      get_property(brand,name)
        
     end
    
     def get_property(brand, property)
-     @config['brands'][brand][property]
-     
+     @config['brands'][brand][property]  
     end
     
     def brand_from_country_code country_code
@@ -36,12 +37,8 @@ module Brandy
     end
         
     def prefix request
-      if Module.const_defined? 'Branding'
-        Branding.config['domains'][Branding.tld(request)] || Branding.config['domains']['com'] || 'nexia'
-      else
-        'nexia'
-      end
+        @config['domains'][Branding.tld(request)] || @config['domains']['com'] || 'nexia'
     end
-  end
+
 end
 
