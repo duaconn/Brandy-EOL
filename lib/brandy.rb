@@ -36,15 +36,18 @@ module Brandy
       @config['domains'][country_code.downcase] || @config['domains']['com']
     end
     
+    def tld request
+      request.domain.split('.').last
+    end
+    
     def brand_from_request request
-    tld = request.domain.split('.'). last
-      @config['domains'][tld] || @config['domains']['com']
+      @config['domains'][tld(request)] || @config['domains']['com']
     end    
     def prefix request
       if @config.nil?
        @config = YAML.load_file(Rails.root.join("config","branding.yml"))
       end
-        @config['domains'][Branding.tld(request)] || @config['domains']['com'] || 'nexia'
+        @config['domains'][tld(request)] || @config['domains']['com'] || 'nexia'
     end
   end
 end
