@@ -41,6 +41,9 @@ module Brandy
       @config['domains'][tld] || @config['domains']['com']
     end    
     def prefix request
+      if @config.nil?
+       @config = YAML.load_file(Rails.root.join("config","branding.yml"))
+      end
         @config['domains'][Branding.tld(request)] || @config['domains']['com'] || 'nexia'
     end
   end
