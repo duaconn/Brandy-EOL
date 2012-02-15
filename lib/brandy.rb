@@ -36,7 +36,7 @@ module Brandy
     end
     
     def tld request
-      request.domain.split('.').last
+      request && request.domain && request.domain.split('.').last || "com" 
     end
     
     def brand_from_request request
