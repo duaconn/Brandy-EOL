@@ -17,6 +17,8 @@ module Brandy
       
       if args.has_key?(:country_code)
         brand = brand_from_country_code args[:country_code]
+      elsif args.has_key(:account)
+        brand = brand_from_country_code args[:country_code].country_code
       elsif args.has_key?(:request)
         brand = brand_from_request args[:request]
       else
