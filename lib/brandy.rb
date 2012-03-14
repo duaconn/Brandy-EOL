@@ -17,7 +17,7 @@ module Brandy
         brand = brand_from_request args[:request]
       else
         #TODO: Fix this, obviously
-        brand = 'nexia'
+        brand = config['domains']['default']
       end
        
       get_property(brand,name)
@@ -28,19 +28,23 @@ module Brandy
     end
     
     def brand_from_country_code country_code
-      config['domains'][country_code.downcase] || config['domains']['com'] || 'nexia'
+      config['domains'][country_code.downcase] || config['domains']['default'] || 'default'
     end
     
     def tld request
-      request && request.domain && request.domain.split('.').last || "com" 
+      request && request.domain && request.domain.split('.').last || "default" 
     end
     
     def brand_from_request request
-      config['domains'][tld(request)] || config['domains']['com'] || 'nexia'
+      config['domains'][tld(request)] || config['domains']['default']
     end
     
     def prefix request
-      config['domains'][tld(request)] || config['domains']['com'] || 'nexia'
+      #config['domains'][tld(request)] || config['domains']['com'] || 'nexia'
+      
+      brand = config['domains'][tld(request)] || config['domains']['default']
+      asset_group = brand.split('_').first
+      asset_group
     end
     
     def config
